@@ -13,10 +13,14 @@ function guessinggame {
 	while [[ $number_of_files -ne $user_answer ]]
 	do
 		read -p 'Please, write the number you guess: ' user_answer
-		if  [[ $user_answer < $number_of_files ]]
+		while [[ ! $user_answer =~ ^[0-9]+$ ]]
+		do
+			read -p 'Please, write a valid number: ' user_answer
+		done
+		if  [[ $user_answer -lt  $number_of_files ]]
 		then
 			echo 'Too low! Try it again.'
-		elif [[ $user_answer > $number_of_files ]]
+		elif [[ $user_answer -gt $number_of_files ]]
 		then
 			echo 'Too high! Try it again.'
 		else
